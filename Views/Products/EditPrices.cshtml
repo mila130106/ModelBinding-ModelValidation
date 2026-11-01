@@ -1,0 +1,50 @@
+@model ProductsValidation.Models.PricesEditViewModel
+
+@{
+    ViewData["Title"] = "Edit prices";
+}
+
+<h1>Edit prices</h1>
+<h4>Category: @Model.Category</h4>
+<hr />
+
+@if (!Model.Items.Any())
+{
+    <p>There are no products in this category.</p>
+}
+else
+{
+    <form asp-action="EditPrices" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Category" />
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Items.Count; i++)
+                {
+                    <tr>
+                        <td><input asp-for="Items[i].Id" class="form-control" readonly /></td>
+                        <td><input asp-for="Items[i].Name" class="form-control" readonly /></td>
+                        <td>
+                            <input asp-for="Items[i].Price" class="form-control" />
+                            <span asp-validation-for="Items[i].Price" class="text-danger"></span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </form>
+}
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,47 @@
+@model ProductsValidation.Models.User
+
+@{
+    ViewData["Title"] = "Create user";
+}
+
+<h1>Create user</h1>
+<h4>User</h4>
+<p class="text-muted">
+    Fields are read-only and are filled only from the query string,
+    e.g. <code>/Users/Create?Name=John&amp;Email=john@gmail.com&amp;Role=user</code>
+</p>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @* Форма постить на поточний URL разом з query string *@
+        <form method="post" action="@(Context.Request.Path.Value + Context.Request.QueryString.Value)">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" readonly />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" readonly />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Role" class="control-label"></label>
+                <input asp-for="Role" class="form-control" readonly />
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

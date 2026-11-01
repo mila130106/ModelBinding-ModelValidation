@@ -6,6 +6,11 @@
 
 <h1>Index</h1>
 
+<p>
+    New users can be added only via query string, for example:
+    <a asp-action="Create" asp-route-Name="John" asp-route-Email="john@gmail.com" asp-route-Role="user">/Users/Create?Name=John&amp;Email=john@gmail.com&amp;Role=user</a>
+</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -38,6 +43,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "View", new { id = item.Id })
             </td>
         </tr>
 }

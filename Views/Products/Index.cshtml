@@ -9,6 +9,13 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<p>
+    Edit all prices for category:
+    @foreach (var category in Enum.GetValues(typeof(Product.Category)).Cast<Product.Category>())
+    {
+        <a asp-action="EditPrices" asp-route-category="@category" class="mr-3">@category</a>
+    }
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -49,8 +56,8 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "View", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
